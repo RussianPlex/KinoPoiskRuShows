@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
-# Russian metadata plugin for Plex, which uses http://www.kinopoisk.ru/ to get the tag data.
-# Плагин для обновления информации о фильмах использующий КиноПоиск (http://www.kinopoisk.ru/).
+# Russian metadata plugin for Plex, which uses https://www.kinopoisk.ru/ to get the tag data.
+# Плагин для обновления информации о фильмах использующий КиноПоиск (https://www.kinopoisk.ru/).
 # Copyright (C) 2012 Zhenya Nyden
 #
 # This program is free software; you can redistribute it and/or
@@ -23,7 +23,7 @@
 # @revision 137
 
 import sys, time, re, math, difflib, translit
-USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36'
+USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36 Edg/94.0.992.50'
 ENCODING_PLEX = 'utf-8'
 
 SCORE_PENALTY_ITEM_ORDER = 2

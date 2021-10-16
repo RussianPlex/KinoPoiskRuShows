@@ -25,7 +25,6 @@
 import string, sys, time, re
 import common
 
-
 TMDB_SECRET = 'a3dc111e66105f6387e99393813ae4d5'
 TMDB_GETINFO = 'http://api.themoviedb.org/2.1/Movie.search/ru/xml/' + TMDB_SECRET + '/%s'
 
@@ -35,36 +34,36 @@ MATCHER_RELEASED = re.compile(r'\D?(\d\d\d\d)\D')
 
 
 def searchForImdbTitles(mediaName, mediaYear, lang):
-  """ Given media name and a candidate title, returns the title result score penalty.
+    """ Given media name and a candidate title, returns the title result score penalty.
   """
-  mediaName = mediaName.lower()
-  page = common.getElementFromHttpRequest(TMDB_GETINFO % mediaName.replace(' ', '%20'), TMDB_PAGE_ENCODING)
-  matches = []
-  if page is None:
-    Log.Warn('nothing was found on tmdb for media name "%s"' % mediaName)
-  else:
-    movieElems = page.xpath('//movies/movie')
-    itemIndex = 0
-    for movieElem in movieElems:
-      try:
-        imdbId = common.getXpathRequiredText(movieElem, './imdb_id/text()')
-        title = common.getXpathRequiredText(movieElem, './name/text()')
-        altTitle = common.getXpathOptionalText(movieElem, './alternative_name/text()')
-        releaseDate = common.getXpathOptionalText(movieElem, './released/text()')
-        year = common.getReOptionalGroup(MATCHER_RELEASED, releaseDate, 0)
-        score = common.scoreMediaTitleMatch(mediaName, mediaYear, title, altTitle, year, itemIndex)
-        matches.append({'id': imdbId, 'name': title, 'year': year, 'score': score})
-        itemIndex += 1
-      except:
-        Log.Warn('failed to parse movie element')
+    mediaName = mediaName.lower()
+    page = common.getElementFromHttpRequest(TMDB_GETINFO % mediaName.replace(' ', '%20'), TMDB_PAGE_ENCODING)
+    matches = []
+    if page is None:
+        Log.Warn('nothing was found on tmdb for media name "%s"' % mediaName)
+    else:
+        movieElems = page.xpath('//movies/movie')
+        itemIndex = 0
+        for movieElem in movieElems:
+            try:
+                imdbId = common.getXpathRequiredText(movieElem, './imdb_id/text()')
+                title = common.getXpathRequiredText(movieElem, './name/text()')
+                altTitle = common.getXpathOptionalText(movieElem, './alternative_name/text()')
+                releaseDate = common.getXpathOptionalText(movieElem, './released/text()')
+                year = common.getReOptionalGroup(MATCHER_RELEASED, releaseDate, 0)
+                score = common.scoreMediaTitleMatch(mediaName, mediaYear, title, altTitle, year, itemIndex)
+                matches.append({'id': imdbId, 'name': title, 'year': year, 'score': score})
+                itemIndex += 1
+            except:
+                Log.Warn('failed to parse movie element')
 
-    return matches
+        return matches
 
 
 def findBestTitleMatch(mediaName, mediaYear, lang):
-  matches = searchForImdbTitles(mediaName, mediaYear, lang)
-  if len(matches) > 0:
-    orderedMatches = sorted(matches, key=lambda item: item['score'], reverse=True)
-    return orderedMatches[0]['id']
-  else:
-    return None
+    matches = searchForImdbTitles(mediaName, mediaYear, lang)
+    if len(matches) > 0:
+        orderedMatches = sorted(matches, key=lambda item: item['score'], reverse=True)
+        return orderedMatches[0]['id']
+    else:
+        return None

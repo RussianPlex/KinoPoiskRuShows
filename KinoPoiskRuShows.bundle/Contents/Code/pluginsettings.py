@@ -34,8 +34,8 @@ KINOPOISK_PREF_DEFAULT_KP_RATING = False
 ENCODING_KINOPOISK_PAGE = 'cp1251'
 
 # Разные страницы сайта.
-KINOPOISK_SITE_BASE = 'http://www.kinopoisk.ru/'
-KINOPOISK_RESOURCE_BASE = 'http://st.kinopoisk.ru/'
+KINOPOISK_SITE_BASE = 'https://www.kinopoisk.ru/'
+KINOPOISK_RESOURCE_BASE = 'https://st.kp.yandex.net/'
 KINOPOISK_TITLE_PAGE_URL = KINOPOISK_SITE_BASE + 'film/%s/'
 KINOPOISK_CAST_PAGE_URL = KINOPOISK_SITE_BASE + 'film/%s/cast/'
 KINOPOISK_STUDIO_PAGE_URL = KINOPOISK_SITE_BASE + 'film/%s/studio/'

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
-# Russian metadata plugin for Plex, which uses http://www.kinopoisk.ru/ to get the tag data.
-# Плагин для обновления информации о фильмах использующий КиноПоиск (http://www.kinopoisk.ru/).
+# Russian metadata plugin for Plex, which uses https://www.kinopoisk.ru/ to get the tag data.
+# Плагин для обновления информации о фильмах использующий КиноПоиск (https://www.kinopoisk.ru/).
 # Copyright (C) 2012  Zhenya Nyden
 #
 # This program is free software; you can redistribute it and/or
